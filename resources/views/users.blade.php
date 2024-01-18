@@ -12,4 +12,8 @@
         @endforeach
     </ul>
 
+    <!-- Boutons pour les formulaires d'inscription et de connexion -->
+    <a href="{{ route('register') }}" class="btn btn-primary">Inscription</a>
+    <a href="{{ route('login') }}" class="btn btn-secondary">Connexion</a>
+
 @endsection

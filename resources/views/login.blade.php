@@ -3,22 +3,24 @@
 @section('title', 'Connexion')
 
 @section('content')
-    <h1>Connexion</h1>
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+    <div class="container mt-5">
+        <h1 class="mb-4">Connexion</h1>
+        <form method="POST" action="{{ route('login') }}" class="border p-4 rounded">
+            @csrf
 
-        <div>
-            <label for="email">Email</label>
-            <input type="email" name="email" required>
-        </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
 
-        <div>
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" required>
-        </div>
+            <div class="mb-4">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
 
-        <div>
-            <button type="submit">Connexion</button>
-        </div>
-    </form>
+            <div>
+                <button type="submit" class="btn btn-primary">Connexion</button>
+            </div>
+        </form>
+    </div>
 @endsection

@@ -48,3 +48,15 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/logout', function () {
+    request()->session()->invalidate();
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile')->middleware('auth');
+
+Route::put('/profile', [UserController::class, 'update'])->name('profile.update')->middleware('auth');

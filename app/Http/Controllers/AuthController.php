@@ -52,5 +52,4 @@ class AuthController extends Controller
             'email' => 'Les informations fournies ne correspondent pas à nos enregistrements.',
         ]);
     }
-
 }

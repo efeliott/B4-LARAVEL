@@ -26,15 +26,36 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
+                @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Connexion</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">Inscription</a>
                 </li>
+                @endguest
+
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Bonjour, {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Déconnexion
+                        </a>
+                    </div>
+                </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                @endauth
             </ul>
         </div>
     </nav>
+
 
     @yield('content')
 

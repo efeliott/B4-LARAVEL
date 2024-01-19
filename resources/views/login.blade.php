@@ -22,5 +22,8 @@
                 <button type="submit" class="btn btn-primary">Connexion</button>
             </div>
         </form>
+        <div class="mt-3">
+            <a href="{{ route('register') }}">S'inscrire</a>
+        </div>
     </div>
 @endsection

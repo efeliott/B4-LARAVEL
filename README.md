@@ -8,6 +8,7 @@ Pour initialiser ce projet vous devez :
     - Pour finir vous pouvez effectuer la commande "php artisan serve" pour lancer le projet
 
 Dasns le projet :
+
     - Vous devez d'abbord vous inscrire en utilisant un nom, un mail et un mot de passe
     - Une fois connecté, rendez-vous sur la page "Tâches" accessible dans la barre de navigation
     - D'ici vous pouvez créer une tâche, ajouter des catégories les modifier etc...

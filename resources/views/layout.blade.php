@@ -18,12 +18,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('home') }}">Accueil <span class="sr-only">(current)</span></a>
                 </li>
+                @auth
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users') }}">Users</a>
                 </li>
-                <li class="nav-item">
+                
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('contact') }}">Form</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('tasks.index') }}">Tâches</a>
                 </li>
+                @endauth
             </ul>
             <ul class="navbar-nav">
                 @guest

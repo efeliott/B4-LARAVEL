@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +62,47 @@ Route::get('/profile', function () {
 })->name('profile')->middleware('auth');
 
 Route::put('/profile', [UserController::class, 'update'])->name('profile.update')->middleware('auth');
+
+### Routes pour les Tâches
+
+Route::get('/tasks', [ArticleController::class, 'index'])->name('tasks.index');
+
+Route::middleware(['auth'])->group(function () {
+    // Route pour afficher le formulaire de création d'une nouvelle tâche
+    Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+    
+    // Route pour enregistrer une nouvelle tâche
+    Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    
+    // Route pour afficher une tâche spécifique
+    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
+    
+    // Route pour afficher le formulaire d'édition d'une tâche
+    Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit')
+         ->middleware('can:update,task'); // Utilisez une Policy pour vérifier si l'utilisateur peut modifier cette tâche
+    
+    // Route pour mettre à jour une tâche
+    Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update')
+         ->middleware('can:update,task'); // Utilisez une Policy pour vérifier si l'utilisateur peut modifier cette tâche
+    
+    // Route pour supprimer une tâche
+    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy')
+         ->middleware('can:delete,task'); // Utilisez une Policy pour vérifier si l'utilisateur peut supprimer cette tâche
+});
+
+### Routes pour les Catégories
+
+Route::get('/categories', [ArticleController::class, 'index'])->name('categories.index');
+
+Route::middleware(['auth'])->group(function () {
+    // Route pour afficher le formulaire de création d'une nouvelle catégorie
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    
+    // Route pour enregistrer une nouvelle catégorie
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    
+    // Vous pouvez ajouter ici d'autres routes pour les catégories si nécessaire
+});
+
+// Routes pour les tâches
+Route::resource('tasks', TaskController::class);

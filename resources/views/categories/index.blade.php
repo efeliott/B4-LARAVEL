@@ -10,7 +10,7 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 {{ $category->name }}
                 <div>
-                    <a href="{{ route('categories.edit', $category) }}" class="btn btn-secondary btn-sm">Modifier</a>
+                    <a href="{{ route('categories.edit', $category->id) }}">Modifier</a>
                     <form action="{{ route('categories.destroy', $category) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')

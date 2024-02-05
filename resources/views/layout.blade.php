@@ -29,6 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('tasks.index') }}">Tâches</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('categories.index') }}">Catégories</a>
+                </li>
                 @endauth
             </ul>
             <ul class="navbar-nav">

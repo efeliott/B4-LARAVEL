@@ -65,7 +65,7 @@ Route::put('/profile', [UserController::class, 'update'])->name('profile.update'
 
 ### Routes pour les Tâches
 
-Route::get('/tasks', [ArticleController::class, 'index'])->name('tasks.index');
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
 Route::middleware(['auth'])->group(function () {
     // Route pour afficher le formulaire de création d'une nouvelle tâche
@@ -79,30 +79,37 @@ Route::middleware(['auth'])->group(function () {
     
     // Route pour afficher le formulaire d'édition d'une tâche
     Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit')
-         ->middleware('can:update,task'); // Utilisez une Policy pour vérifier si l'utilisateur peut modifier cette tâche
+         ->middleware('can:update,task'); 
     
     // Route pour mettre à jour une tâche
     Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update')
-         ->middleware('can:update,task'); // Utilisez une Policy pour vérifier si l'utilisateur peut modifier cette tâche
+         ->middleware('can:update,task'); 
     
     // Route pour supprimer une tâche
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy')
-         ->middleware('can:delete,task'); // Utilisez une Policy pour vérifier si l'utilisateur peut supprimer cette tâche
+         ->middleware('can:delete,task'); 
 });
 
 ### Routes pour les Catégories
 
-Route::get('/categories', [ArticleController::class, 'index'])->name('categories.index');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 Route::middleware(['auth'])->group(function () {
+    
     // Route pour afficher le formulaire de création d'une nouvelle catégorie
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
     
-    // Route pour enregistrer une nouvelle catégorie
-    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    // Route pour afficher une catégorie spécifique
+    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
     
-    // Vous pouvez ajouter ici d'autres routes pour les catégories si nécessaire
-});
+    // Route pour afficher le formulaire d'édition d'une catégorie
+    Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    
+    // Route pour mettre à jour une catégorie
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    
+    // Route pour supprimer une catégorie
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-// Routes pour les tâches
-Route::resource('tasks', TaskController::class);
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+});

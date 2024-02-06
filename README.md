@@ -7,7 +7,7 @@ Pour initialiser ce projet vous devez :
     - Effectuer un "php artisan migarte" et accepter si l'invite de commande vous demande si vous voulez créer la base intitulé "laravel"
     - Pour finir vous pouvez effectuer la commande "php artisan serve" pour lancer le projet
 
-Dasns le projet :
+Dans le projet :
 
     - Vous devez d'abbord vous inscrire en utilisant un nom, un mail et un mot de passe
     - Une fois connecté, rendez-vous sur la page "Tâches" accessible dans la barre de navigation
